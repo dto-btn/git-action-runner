@@ -8,7 +8,7 @@ ACCESS_TOKEN="$(curl --request POST -fsSL \
   -H 'Accept: application/vnd.github.v3+json' \
   -H "Authorization: Bearer $JWTTOKEN" \
   -H 'X-GitHub-Api-Version: 2022-11-28' \
-  'https://api.github.com/app/installations/87587800/access_tokens' \
+  "https://api.github.com/app/installations/$INSTALLATION_ID/access_tokens" \
   | jq -r '.token')"
 
 echo "access: $ACCESS_TOKEN"
