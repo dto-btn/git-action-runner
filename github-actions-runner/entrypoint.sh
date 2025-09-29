@@ -1,6 +1,6 @@
 #!/bin/sh -l
 
-JWTTOKEN=$(./jwt.sh Iv23liUSavN8izwHxrgV ./gitrunnertestdto-private-key.pem)
+JWTTOKEN=$(./jwt.sh $CLIENT_ID "./$KEY_FILE_NAME.pem")
 echo "12312: $JWTTOKEN"
 
 # get an access token
@@ -18,7 +18,7 @@ REGISTRATION_TOKEN="$(curl -X POST -fsSL \
   -H 'Accept: application/vnd.github.v3+json' \
   -H "Authorization: Bearer $ACCESS_TOKEN" \
   -H 'X-GitHub-Api-Version: 2022-11-28' \
-  'https://api.github.com/orgs/dto-btn/actions/runners/registration-token' \
+  "$REGISTRATION_TOKEN_API_URL" \
   | jq -r '.token')"
 
 echo "reg: $REGISTRATION_TOKEN"
