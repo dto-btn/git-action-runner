@@ -1,10 +1,10 @@
 #!/usr/bin/env bash
 
-echo "hello"
+#move all this to entrypoint.  no need to have 2 files.
 set -o pipefail
 client_id=$1 # Client ID as first argument
 
-pem=$( cat $2 ) # file path of the private key as second argument
+pem=$( cat $2 ) # file path of the private key as second argument.  comment this out and use ${PEM} to bring in env var from terraform
 
 now=$(date +%s)
 iat=$((${now} - 60)) # Issues 60 seconds in the past
@@ -29,6 +29,7 @@ payload=$( echo -n "${payload_json}" | b64enc )
 
 # Signature
 header_payload="${header}"."${payload}"
+# ${pem} here to ${PEM} after bring in from env var in terraform
 signature=$(
     openssl dgst -sha256 -sign <(echo -n "${pem}") \
     <(echo -n "${header_payload}") | b64enc
