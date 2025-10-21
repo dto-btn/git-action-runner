@@ -1,4 +1,4 @@
-#!/bin/sh -l
+#!/bin/bash
 
 set -o pipefail
 # CLIENT_ID=$1 # Client ID as first argument
