@@ -1,6 +1,6 @@
 Custom imagefor Github runner when authenticating with GitHub Apps.
 
-<u>Needed env variables</u>
+**Needed env variables**
 
 | Variables | Description |
 | --------- | ----------- |
