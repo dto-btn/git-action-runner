@@ -3,6 +3,10 @@ FROM ghcr.io/actions/actions-runner:2.328.0
 
 USER root
 
+COPY GOC-GDC-ROOT-A.crt /usr/local/share/ca-certificates/
+#ensure certs are added
+RUN update-ca-certificates
+
 # install curl and jq
 RUN apt-get update && apt-get install -y curl jq ca-certificates && \
     apt-get clean && \
@@ -10,9 +14,6 @@ RUN apt-get update && apt-get install -y curl jq ca-certificates && \
 
 COPY github-actions-runner/entrypoint.sh ./entrypoint.sh
 RUN chmod +x ./entrypoint.sh
-
-#ensure certs are added
-RUN update-ca-certificates
 
 USER runner
 
