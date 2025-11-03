@@ -3,7 +3,7 @@ FROM ghcr.io/actions/actions-runner:2.328.0
 
 USER root
 
-COPY GOC-GDC-ROOT-A.crt /usr/local/share/ca-certificates/
+COPY github-actions-runner/GOC-GDC-ROOT-A.crt /usr/local/share/ca-certificates/
 #ensure certs are added
 RUN update-ca-certificates
 
